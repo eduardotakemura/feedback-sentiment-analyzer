@@ -1,0 +1,167 @@
+/* General reset and box sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #D2E0FB;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+/* Main container */
+.container {
+    width: 100%;
+    max-width: 60%;
+    padding: 50px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Header styling */
+h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+/* Adding spacing between list items in the description */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+    text-align: left;
+}
+li {
+    margin-bottom: 10px;
+}
+
+.description ul li {
+    margin: 10px 0;
+}
+
+.description ul li b {
+    color: #0066cc;
+}
+
+/* Input message box styling */
+.message-box {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    min-height: 150px;
+    resize: none; /* Disables resizing */
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+.message-box:focus {
+    outline: none;
+    border-color: #0066cc;
+}
+
+/* Button styling */
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #004b99;
+}
+
+/* Result box styling */
+.result-box {
+    margin-top: 40px;
+    padding: 20px;
+    border: 1px solid #0066cc;
+    background-color: #e6f3ff;
+    border-radius: 10px;
+    text-align: left; /* Align text to left for a cleaner look */
+    display: none; /* Hidden until results are shown */
+}
+
+.result-box p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.result-box span {
+    font-weight: bold;
+    color: #333;
+}
+
+.spinner {
+    border: 6px solid #f3f3f3; /* Light grey */
+    border-top: 6px solid #0066cc; /* Blue */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto; /* Center it */
+}
+
+/* Spinner animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Progress Bar Container */
+.progress-container {
+    margin-top: 20px;
+}
+
+/* Base styling for progress bars */
+.progress {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    height: 25px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+/* Progress bar filler */
+.progress-bar {
+    height: 100%;
+    background-color: #0066cc;
+    width: 0%; /* Initial value */
+    transition: width 0.5s ease;
+    border-radius: 10px;
+}
+

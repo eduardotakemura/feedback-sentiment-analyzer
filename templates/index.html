@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Sentiment Analyzer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+   <div class="container">
+        <!-- Title -->
+        <h1>Welcome to the Feedback Sentiment Analyzer!</h1>
+
+        <!-- Description -->
+       <p class="description">
+            Welcome! I'm using two advanced pre-trained models to analyze the sentiment and emotions in text inputs such as comments, reviews, feedback, and more.
+            These insights are valuable for understanding customer feelings, assessing service quality, and identifying unmet needs.
+       </p>
+        <ul>
+            <li><b>Sentiment Analysis:</b> A <a href="https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest">RoBERTa-based</a> model trained on Twitter data that determines if a message is positive, negative, or neutral.</li>
+            <li><b>Emotion Detection:</b> A <a href="https://huggingface.co/j-hartmann/emotion-english-distilroberta-base">DistilRoBERTa</a> model that identifies the underlying emotions in the text, such as joy, sadness, anger, and others.</li>
+        </ul>
+       <p class="description">
+           I'll process your input and provide a simple breakdown of both the sentiment and the emotion it conveys. Feel free to give it a try!
+       </p>
+
+        <textarea class="message-box" placeholder="Type your message here..."></textarea>
+
+        <div class="button-container">
+            <button id="analyzeButton">Analyze Sentiment</button>
+        </div>
+       <div id="loadingSpinner" class="spinner" style="display: none;"></div>
+
+        <div class="result-box" id="resultBox">
+            <p>I predict this message has a sentiment of <span id="sentimentLabel">?</span> with <span id="sentimentScore">?</span>% intensity.</p>
+            <p>Additionally, the emotion is <span id="emotionLabel">?</span> with a intensity of <span id="emotionScore">?</span>%.</p>
+            <div class="progress-container">
+                <p>Sentiment Intensity:</p>
+                <div class="progress">
+                    <div id="sentimentProgress" class="progress-bar"></div>
+                </div>
+
+                <p>Emotion Intensity:</p>
+                <div class="progress">
+                    <div id="emotionProgress" class="progress-bar"></div>
+                </div>
+</div>
+        </div>
+   </div>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+</body>
+</html>
