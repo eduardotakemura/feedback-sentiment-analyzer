@@ -6,8 +6,7 @@
 }
 
 body {
-    font-family: "Montserrat", sans-serif;
-    background-color: #D2E0FB;
+    font-family: "Baloo Bhaijaan 2", sans-serif;
     color: #333;
     line-height: 1.6;
     display: flex;
@@ -21,9 +20,6 @@ body {
     width: 100%;
     max-width: 60%;
     padding: 50px;
-    background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -39,21 +35,31 @@ h1 {
 
 .description {
     font-size: 1.1rem;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     line-height: 1.8;
+}
+.call {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
 }
 
 /* Adding spacing between list items in the description */
 ul {
     list-style: none;
-    padding: 0;
     margin-bottom: 20px;
     text-align: left;
+    border: 1px solid #0066cc;
+    border-radius: 10px;
+    padding: 15px;
 }
 li {
     margin-bottom: 10px;
 }
 
+.li-title {
+    font-size: 1.5rem;
+    text-align: center;
+}
 .description ul li {
     margin: 10px 0;
 }

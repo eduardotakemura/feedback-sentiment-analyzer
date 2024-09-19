@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feedback Sentiment Analyzer</title>
+    <title>😍😑😩 Feedback Sentiment Analyzer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
@@ -16,15 +16,16 @@
 
         <!-- Description -->
        <p class="description">
-            Welcome! I'm using two advanced pre-trained models to analyze the sentiment and emotions in text inputs such as comments, reviews, feedback, and more.
-            These insights are valuable for understanding customer feelings, assessing service quality, and identifying unmet needs.
+            Welcome! I'm using two advanced pre-trained models to analyze the sentiment and emotions in text inputs such as <b>comments, reviews, feedback, and more</b>.
+            </br>These insights are valuable for understanding customer feelings, assessing service quality, and identifying unmet needs.
        </p>
         <ul>
-            <li><b>Sentiment Analysis:</b> A <a href="https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest">RoBERTa-based</a> model trained on Twitter data that determines if a message is positive, negative, or neutral.</li>
-            <li><b>Emotion Detection:</b> A <a href="https://huggingface.co/j-hartmann/emotion-english-distilroberta-base">DistilRoBERTa</a> model that identifies the underlying emotions in the text, such as joy, sadness, anger, and others.</li>
+            <li class="li-title"><b>Models description</b></li>
+            <li><b>Sentiment Analysis:</b> A <a href="https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest">RoBERTa-based</a> model trained on Twitter data that determines if a message is <u>positive, negative, or neutral.</u></li>
+            <li><b>Emotion Detection:</b> A <a href="https://huggingface.co/j-hartmann/emotion-english-distilroberta-base">DistilRoBERTa</a> model that identifies the underlying emotions in the text, such as <u>joy, sadness, anger, and others.</u></li>
         </ul>
-       <p class="description">
-           I'll process your input and provide a simple breakdown of both the sentiment and the emotion it conveys. Feel free to give it a try!
+       <p class="call">
+           <b>Try it out! Type some message below, and I'll provide a simple breakdown of both the sentiment and the emotion it conveys.</b>
        </p>
 
         <textarea class="message-box" placeholder="Type your message here..."></textarea>
@@ -35,15 +36,15 @@
        <div id="loadingSpinner" class="spinner" style="display: none;"></div>
 
         <div class="result-box" id="resultBox">
-            <p>I predict this message has a sentiment of <span id="sentimentLabel">?</span> with <span id="sentimentScore">?</span>% intensity.</p>
-            <p>Additionally, the emotion is <span id="emotionLabel">?</span> with a intensity of <span id="emotionScore">?</span>%.</p>
+            <p>I predict this message has a <span id="sentimentLabel">?</span> sentiment with <span id="sentimentScore">?</span>% confidence.</p>
+            <p>Additionally, the emotion is <span id="emotionLabel">?</span> with confidence of <span id="emotionScore">?</span>%.</p>
             <div class="progress-container">
-                <p>Sentiment Intensity:</p>
+                <p>Sentiment Confidence:</p>
                 <div class="progress">
                     <div id="sentimentProgress" class="progress-bar"></div>
                 </div>
 
-                <p>Emotion Intensity:</p>
+                <p>Emotion Confidence:</p>
                 <div class="progress">
                     <div id="emotionProgress" class="progress-bar"></div>
                 </div>
