@@ -1,35 +1,51 @@
-from flask import Flask, request, jsonify, render_template
-from transformers import pipeline
-
-# ------- APP INIT ------- #
-app = Flask(__name__)
+import streamlit as st
+from model import FeedbackSentimentAnalyzer
 
 # ------- MODELS INIT ------- #
-sentiment_pipeline = pipeline(
-    "sentiment-analysis",
-    model="cardiffnlp/twitter-roberta-base-sentiment-latest"
-)
-emotion_pipeline = pipeline(
-    "text-classification",
-    model="j-hartmann/emotion-english-distilroberta-base"
-)
+model = FeedbackSentimentAnalyzer()
 
-# ------- ROUTES ------- #
-@app.route('/')
-def index():
-    return render_template('index.html')
+# ------- STREAMLIT APP ------- #
 
-@app.route('/predict', methods=['POST'])
-def analyze():
-    data = request.get_json()
+# Set up the page layout and title
+st.set_page_config(page_title="Feedback Sentiment Analyzer", layout="centered")
+st.title("😍😑😩 Feedback Sentiment Analyzer")
 
-    if 'message' not in data:
-        return jsonify({'error': 'No image provided'}), 400
+# Description and instructions
+st.write("""
+Welcome! I'm using two advanced pre-trained models to analyze the sentiment and emotions in text inputs such as **comments, reviews, feedback, and more**.
+These insights are valuable for understanding customer feelings, assessing service quality, and identifying unmet needs.
+""")
 
-    sentiment = sentiment_pipeline(data['message'])
-    emotion = emotion_pipeline(data['message'])
+# Models description
+st.subheader("Models description")
+st.markdown("""
+- **Sentiment Analysis**: A [RoBERTa-based model](https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest) trained on Twitter data that determines if a message is **positive, negative, or neutral**.
+- **Emotion Detection**: A [DistilRoBERTa model](https://huggingface.co/j-hartmann/emotion-english-distilroberta-base) that identifies the underlying emotions in the text, such as **joy, sadness, anger, and others**.
+""")
 
-    return jsonify({'sentiment':sentiment,'emotion':emotion})
+# Text input for the message
+message = st.text_area("Try it out! Type some message below, and I'll provide a simple breakdown of both the sentiment and the emotion it conveys.")
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# Analyze button
+if st.button("Analyze Sentiment"):
+    if not message.strip():
+        st.error("Please enter a message.")
+    else:
+        # Run the sentiment and emotion analysis
+        sentiment = model.sentiment_pipeline(message)
+        emotion = model.emotion_pipeline(message)
+
+        # Display the results
+        sentiment_score = sentiment[0]['score'] * 100
+        sentiment_label = sentiment[0]['label'].replace('LABEL_', '')
+        emotion_score = emotion[0]['score'] * 100
+        emotion_label = emotion[0]['label']
+
+        # Display sentiment and emotion results
+        st.markdown(f"**Sentiment Prediction:** This message has a **{sentiment_label}** sentiment with **{sentiment_score:.2f}%** confidence.")
+        st.markdown(f"**Emotion Prediction:** The emotion is **{emotion_label}** with a confidence of **{emotion_score:.2f}%**.")
+
+        # Progress bars for sentiment and emotion confidence
+        st.progress(sentiment_score / 100)
+        st.progress(emotion_score / 100)
+
