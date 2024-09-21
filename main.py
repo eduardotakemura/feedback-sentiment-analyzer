@@ -7,8 +7,8 @@ model = FeedbackSentimentAnalyzer()
 # ------- STREAMLIT APP ------- #
 
 # Set up the page layout and title
-st.set_page_config(page_title="Feedback Sentiment Analyzer", layout="centered")
-st.title("😍😑😩 Feedback Sentiment Analyzer")
+st.set_page_config(page_title="😍😑😩 Feedback Sentiment Analyzer", layout="centered")
+st.title("Feedback Sentiment Analyzer")
 
 # Description and instructions
 st.write("""
@@ -43,9 +43,11 @@ if st.button("Analyze Sentiment"):
 
         # Display sentiment and emotion results
         st.markdown(f"**Sentiment Prediction:** This message has a **{sentiment_label}** sentiment with **{sentiment_score:.2f}%** confidence.")
-        st.markdown(f"**Emotion Prediction:** The emotion is **{emotion_label}** with a confidence of **{emotion_score:.2f}%**.")
-
-        # Progress bars for sentiment and emotion confidence
         st.progress(sentiment_score / 100)
+
+        st.markdown(f"**Emotion Prediction:** The emotion is **{emotion_label}** with a confidence of **{emotion_score:.2f}%**.")
         st.progress(emotion_score / 100)
+
+
+
 
